@@ -82,7 +82,7 @@ flowchart LR
 
 ### v1.x.x
 
-Estimativa inicial de 50h para a primeira versão do projeto.
+Estimativa inicial de 108h para a primeira versão do projeto.
 
 | # | Escopo | Responsável | Carga | Atividade | Pré-requisitos | 
 | :---  | :---: | :---: | :---: | :--- | :--- |
