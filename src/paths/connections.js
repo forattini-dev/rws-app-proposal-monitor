@@ -1,3 +1,5 @@
+const { PaginatedResource } = require('./concerns')
+
 module.exports = {
   "/connections": {
     get: {
@@ -10,12 +12,7 @@ module.exports = {
           description: "Return a 200 status to indicate that the data was received successfully.",
           content: {
             "application/json": {
-              schema: {
-                type: "array",
-                items: {
-                  $ref: "#/components/schemas/Connection"
-                }
-              }
+              schema: PaginatedResource('#/components/schemas/Connection')
             }
           },
         }
