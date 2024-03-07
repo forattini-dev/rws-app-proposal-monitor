@@ -1,34 +1,44 @@
 module.exports = {
-  "schemas": {
-    "Pet": {
-      "type": "object",
-      "required": ["id", "name"],
-      "properties": {
-        "id": {
-          "type": "integer",
-          "format": "int64"
+  schemas: {
+
+    Error404NotFound: {
+      type: "object",
+      required: ["code", "message"],
+      properties: {
+        code: {
+          type: "integer",
         },
-        "name": {
-          "type": "string"
-        },
-        "tag": {
-          "type": "string"
+        message: {
+          type: "string"
         }
       }
     },
 
-    "Error": {
-      "type": "object",
-      "required": ["code", "message"],
-      "properties": {
-        "code": {
-          "type": "integer",
-          "format": "int32"
+    Error422UnprocessableEntity: {
+      type: "object",
+      required: ["code", "message"],
+      properties: {
+        code: {
+          type: "integer",
         },
-        "message": {
-          "type": "string"
+        message: {
+          type: "string"
         }
       }
-    }
+    },
+
+    Error429TooManyRequests: {
+      type: "object",
+      required: ["code", "message"],
+      properties: {
+        code: {
+          type: "integer",
+        },
+        message: {
+          type: "string"
+        }
+      }
+    },
+
   }
 }

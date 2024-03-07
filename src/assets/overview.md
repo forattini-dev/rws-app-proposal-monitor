@@ -60,6 +60,11 @@ flowchart LR
       prometheus_server <--> prometheus_database
     end
 
+    subgraph notification_ctx[Notifications]
+      direction LR
+      slack[Slack]
+    end
+
     subgraph svc_monitor_ctx[Monitor Service]
       direction LR
       mon_cache[(Cache)]
@@ -73,10 +78,73 @@ flowchart LR
       mon_api <--> mon_database
       mon_api <--> mon_cache
       mon_api ---> prometheus_server
+      mon_api ---> slack
       sync_black_box ---> mon_api
       app_monitor ---> mon_api
     end
 ```
+
+## Requisitos Funcionais
+
+### v1.x.x
+
+#### RF1 - O serviço deve ser capaz de acumular métricas
+- No boot do serviço, deve ser possível configurar o Prometheus para coletar métricas do serviço.
+Para acumularemos métricas, devemos usar um banco de dados que suporte séries temporais. O Prometheus é um banco de dados de séries temporais que suporta a coleta de métricas de sistemas e serviços.
+
+#### RF2 - O serviço deve acumular métricas de forma a agrupar e filtrar por critérios
+- Devemos usar as labels do prometheus para agrupar e filtrar as métricas. O objetivo está em conseguir disponibilizar valores de métricas para cada Provider e Connection, como também o somatório de todas as métricas com filtros maiores.
+
+Exs:
+- Média de requisições de update entre SistemaA e SistemaB.
+- Média de todas as requisições de update com o destino para SistemaA independente de qual origem.
+
+#### RF3 - Coleta de métricas de sistemas integrados
+- O sistema deve disponibilizar um webhook capaz de coletar métricas de Providers.
+- São elas:
+    - request_response_time
+    - request_success
+    - request_total
+    - request_error_4xx
+    - request_error_404
+    - request_error_429
+    - request_error_5xx
+
+#### RF4 - Coleta de métricas sobre conexões entre sistemas
+- O sistema deve disponibilizar um webhook capaz de coletar métricas de Connections.
+- São elas:
+    - resource_index_time
+    - resource_get_time
+    - resource_create_time
+    - resource_update_time
+    - resource_delete_time
+
+#### RF5 - Exportação de métricas
+- O sistema deve exportar as métricas acumuladas para o Prometheus.
+- O endpoint default para o Prometheus é `/metrics`.
+
+#### RF6 - Sistema deve interpretar métricas sobre Providers
+- Ao ser requisitado, o serviço deve agrupar métricas sobre um Provider e retornar uma timeserie condicionada a um intervalo de tempo.
+- O intervalo de tempo deve ser configurável.
+- Os filtros de métricas deverão ser injetados através das labels para o Prometheus.
+
+Ex:
+- Dado Provider ID=X e interval=Y:
+    - Para cada métrica de Provider:
+      - uma timeserie agrupada por X e Y.
+    - trazer cada métrica de Connections:
+      - uma timeserie agrupada por X e Y na qual o Provider seja origem.
+      - uma timeserie agrupada por X e Y na qual o Provider seja destino.
+
+#### RF7 - Sistema deve acumular métricas sobre Conexões
+- Ao ser requisitado, o serviço deve agrupar métricas sobre uma Connection e retornar uma timeserie condicionada a um intervalo de tempo.
+- O intervalo de tempo deve ser configurável.
+- Os filtros de métricas deverão ser injetados através das labels para o Prometheus.
+
+Ex:
+- Dado Connection ID=X e interval=Y:
+    - Para cada métrica de Connection:
+      - uma timeserie agrupada por X e Y.
 
 ## Planejamento
 
@@ -102,42 +170,10 @@ Estimativa inicial de 108h para a primeira versão do projeto.
 | 4. | <b>Monitor</b> | - | - | - | <b>1, 2</b> |
 | 4.1. | Monitor | Filipe | 6h | Configuração do Projeto: ambiente local com docker-compose, Nestjs, conexão com Postgres e Prometheus | |
 | 4.2. | Monitor | Filipe | 6h | Configuração do gerador de documentação OpenAPI 3.1, [documentação](https://docs.nestjs.com/openapi/introduction) | |
-| 4.3. | Monitor | Filipe | 8h | Configuração de métricas custom para exportar para Prometheus | |
-| 4.4. | Monitor | Filipe | 2h | Endpoint de exportação de métricas para Prometheus scrap | |
-| 4.5. | Monitor | Filipe | 8h | Repositórios de recursos e integração com banco | |
-| 4.6. | Monitor | Filipe | 8h | Webhook de captura de métricas de systemas | |
-| 4.7. | Monitor | Filipe | 8h | Webhook de captura de métricas de conexões | |
-| 4.8. | Monitor | Filipe | 20h | Endpoints de listagem e métricas de Providers  | |
-| 4.9. | Monitor | Filipe | 20h | Endpoints de listagem e métricas de Conexões | |
-
-## Requisitos Funcionais
-
-### RF1 - Coleta de métricas de Providers
-- O sistema deve ser capaz de coletar métricas de sistemas integradores.
-- São elas:
-    - request_response_time
-    - request_success
-    - request_total
-    - request_error_500
-    - request_error_400
-
-### RF2 - Coleta de métricas de Connection 
-- O sistema deve ser capaz de coletar métricas de conexões entre sistemas.
-- São elas:
-    - resource_index_time
-    - resource_get_time
-    - resource_create_time
-    - resource_update_time
-    - resource_delete_time
-
-### RF3 - Exportação de métricas
-- O sistema deve exportar as métricas acumuladas para o Prometheus.
-- O endpoint default para o Prometheus é `/metrics`.
-
-### RF4 - Sistema deve acumular métricas sobre Providers
-- O sistema deve trazer para cada Provider:
-  - trazer cada métrica de Provider uma timeserie condicionada a um intervalo de tempo.
-
-### RF5 - Sistema deve acumular métricas sobre Conexões
-- O sistema deve trazer para cada Provider:
-  - trazer cada métrica de Provider uma timeserie condicionada a um intervalo de tempo.
+| 4.3. | Monitor | Filipe | 8h | RF1 - O serviço deve ser capaz de acumular métricas | |
+| 4.4. | Monitor | Filipe | 8h | RF2 - O serviço deve acumular métricas de forma a agrupar e filtrar por critérios | |
+| 4.5. | Monitor | Filipe | 8h | RF3 - Coleta de métricas de sistemas integrados | |
+| 4.6. | Monitor | Filipe | 8h | RF4 - Coleta de métricas sobre conexões entre sistemas | |
+| 4.7. | Monitor | Filipe | 2h | RF5 - Exportação de métricas | |
+| 4.8. | Monitor | Filipe | 20h | RF6 - Sistema deve interpretar métricas sobre Providers  | |
+| 4.9. | Monitor | Filipe | 20h | RF7 - Sistema deve acumular métricas sobre Conexões | |

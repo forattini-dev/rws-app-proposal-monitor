@@ -32,9 +32,9 @@ const openapi = {
   webhooks: require('./webhooks'),
   
   components: merge(
-    require('./components'),
     require('./paths/_components'),
     require('./webhooks/_components'),
+    require('./components'),
   ),
 
   security: {},

@@ -1,3 +1,5 @@
+const { RequestsErrors } = require('../concerns')
+
 module.exports = {
   "/connections/{id}/metrics": {
     post: {
@@ -30,7 +32,8 @@ module.exports = {
       responses: {
         200: {
           description: "Return a 200 status to indicate that the data was received successfully."
-        }
+        },
+        ...RequestsErrors,
       }
     }
   },
@@ -66,7 +69,8 @@ module.exports = {
       responses: {
         200: {
           description: "Return a 200 status to indicate that the data was received successfully."
-        }
+        },
+        ...RequestsErrors,
       }
     }
   },

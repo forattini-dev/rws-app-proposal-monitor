@@ -1,4 +1,9 @@
+const { pick } = require('lodash')
+const { pickRequestsErrors } = require('../concerns')
 const { PaginatedResource } = require('./concerns')
+
+const errors = pickRequestsErrors([404, 422, 429])
+errors[404].description = "Connection not found"
 
 module.exports = {
   "/connections": {
@@ -15,7 +20,8 @@ module.exports = {
               schema: PaginatedResource('#/components/schemas/Connection')
             }
           },
-        }
+        },
+        ...pick(errors, 429),
       }
     }
   },
@@ -49,7 +55,8 @@ module.exports = {
               }
             }
           },
-        }
+        },
+        ...errors,
       }
     }
   },
