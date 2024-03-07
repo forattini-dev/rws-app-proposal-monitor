@@ -13,8 +13,8 @@ const openapi = {
 
   servers: [
     {
-      description: "Development server"
-      // "url": "http://petstore.example.com/api",
+      description: "Development server",
+      "url": "http://petstore.example.com/api",
     }
   ],
 
