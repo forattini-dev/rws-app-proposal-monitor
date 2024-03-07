@@ -5,7 +5,7 @@
   "license": "MIT",
   "scripts": {
     "serve": "browser-sync start --config bs-config.js",
-    "build": "nodemon --watch ./src ./src/build.js"
+    "build": "bash -c '[[ $BUILD_SERVER == \"true\" ]] && node ./src/build.js || nodemon --watch ./src ./src/build.js'"
   },
   "devDependencies": {
     "browser-sync": "^3.0.2",
