@@ -3,8 +3,8 @@ const { RequestsErrors } = require('../concerns')
 module.exports = {
   "/connections/{id}/metrics": {
     post: {
-      summary: 'Push connection metrics',
-      description: 'Push connection metrics.',
+      summary: 'Push a connection metric',
+      description: 'Push a connection metric.',
       tags: ['metrics'],
 
       parameters: [
@@ -18,7 +18,7 @@ module.exports = {
       ],
 
       requestBody: {
-        description: "Information about a new pet in the system",
+        description: "Information that refence a metric and its value.",
 
         content: {
           "application/json": {
@@ -40,8 +40,8 @@ module.exports = {
 
   "/providers/{id}/metrics": {
     post: {
-      summary: 'Push connection metrics',
-      description: 'Push connection metrics.',
+      summary: 'Push a provider metric',
+      description: 'Push a provider metric.',
       tags: ['metrics'],
 
       parameters: [
@@ -55,7 +55,7 @@ module.exports = {
       ],
 
       requestBody: {
-        description: "Information about a new pet in the system",
+        description: "Information that refence a metric and its value.",
 
         content: {
           "application/json": {

@@ -1,19 +1,19 @@
-const { pick } = require('lodash')
+const { merge, pick } = require('lodash')
 
 const RequestsErrors = {
   404: {
-    description: "Unprocessable Entity",
+    description: "Entity not found.",
     content: {
       "application/json": {
         schema: {
-          $ref: "#/components/schemas/Error404NotFound"
+          $ref: "#/components/schemas/Error404EntityNotFound"
         }
       }
     }
   },
 
   422: {
-    description: "Unprocessable Entity",
+    description: "Unprocessable entity.",
     content: {
       "application/json": {
         schema: {
@@ -24,7 +24,7 @@ const RequestsErrors = {
   },
 
   429: {
-    description: "Too many requests",
+    description: "Too many requests.",
     content: {
       "application/json": {
         schema: {
@@ -39,6 +39,6 @@ module.exports = {
   RequestsErrors,
 
   pickRequestsErrors(statusCodes) {
-    return pick(RequestsErrors, [].concat(statusCodes))
+    return pick(merge({}, RequestsErrors), [].concat(statusCodes))
   }
 }
