@@ -1,0 +1,14 @@
+{
+  "name": "rws-app-proposal-monitor",
+  "version": "1.0.0",
+  "main": "index.js",
+  "license": "MIT",
+  "scripts": {
+    "start": "browser-sync start --server './docs' --files './docs/css/*.css, ./docs/js/*.js, ./docs/*.html ./docs/*.json'",
+    "build": "nodemon index.js"
+  },
+  "devDependencies": {
+    "browser-sync": "^3.0.2",
+    "nodemon": "^3.1.0"
+  }
+}
