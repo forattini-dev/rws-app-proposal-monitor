@@ -1,17 +1,18 @@
 module.exports = {
-  "schemas": {
-    "ErrorWebhook": {
-      "type": "object",
-      "required": ["code", "message"],
-      "properties": {
-        "code": {
+  schemas: {
+
+    Provider: {
+      type: "object",
+      properties: {
+        id: {
+          type: "integer",
+        },
+        code: {
           "type": "integer",
           "format": "int32"
         },
-        "message": {
-          "type": "string"
-        }
       }
-    }
+    },
+
   }
 }

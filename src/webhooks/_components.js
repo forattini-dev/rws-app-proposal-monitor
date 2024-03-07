@@ -4,7 +4,7 @@ module.exports = {
       type: "object",
     },
 
-    ConnectionMetricRequest: {
+    MetricRequest: {
       type: "object",
       
       required: [
@@ -22,6 +22,6 @@ module.exports = {
           $ref: "#/components/schemas/LabelsPack",
         },
       }
-    }
+    },
   }
 }

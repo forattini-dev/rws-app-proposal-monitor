@@ -100,9 +100,12 @@ Estimativa inicial de 50h para a primeira versão do projeto.
 | 3.2. | Prometheus | Filipe | 4h | Configurar IaC do container Prometheus como AWS ECS Fargate | |
 | 3.3. | Prometheus | Filipe | 4h | Configurar scrapper do Prometheus | 4.2 |
 | 4. | <b>Monitor</b> | - | - | - | <b>1, 2</b> |
-| 4.1. | Monitor | Filipe | 6h | Configuração do Projeto: ambiente local com docker-compose, Nestjs, conexão com Postgres e Prometheus |
-| 4.2. | Monitor | Filipe | 6h | Configuração do gerador de documentação OpenAPI 3.1, [documentação](https://docs.nestjs.com/openapi/introduction) |
-| 4.3. | Monitor | Filipe | 8h | Configuração de métricas custom para exportar para Prometheus |
-| 4.4. | Monitor | Filipe | 2h | Endpoint de exportação de métricas para Prometheus scrap |
-| 4.5. | Monitor | Filipe | 8h | Repositórios de recursos e integração com banco |
-| 4.6. | Monitor | Filipe | 8h | Webhook de captura de métricas  |
+| 4.1. | Monitor | Filipe | 6h | Configuração do Projeto: ambiente local com docker-compose, Nestjs, conexão com Postgres e Prometheus | |
+| 4.2. | Monitor | Filipe | 6h | Configuração do gerador de documentação OpenAPI 3.1, [documentação](https://docs.nestjs.com/openapi/introduction) | |
+| 4.3. | Monitor | Filipe | 8h | Configuração de métricas custom para exportar para Prometheus | |
+| 4.4. | Monitor | Filipe | 2h | Endpoint de exportação de métricas para Prometheus scrap | |
+| 4.5. | Monitor | Filipe | 8h | Repositórios de recursos e integração com banco | |
+| 4.6. | Monitor | Filipe | 8h | Webhook de captura de métricas de systemas | |
+| 4.7. | Monitor | Filipe | 8h | Webhook de captura de métricas de conexões | |
+| 4.8. | Monitor | Filipe | 20h | Endpoints de listagem e métricas de Providers  | |
+| 4.9. | Monitor | Filipe | 20h | Endpoints de listagem e métricas de Conexões | |
