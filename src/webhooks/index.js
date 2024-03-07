@@ -76,9 +76,7 @@ module.exports = {
       },
 
       responses: {
-        200: {
-          description: "Return a 200 status to indicate that the data was received successfully."
-        },
+        ...defaultResponses,
         ...ResponseErrors,
       }
     }

@@ -150,7 +150,7 @@ Ex:
 
 ### v1.x.x
 
-Estimativa inicial de 108h para a primeira versão do projeto.
+Estimativa inicial de 118h para a primeira versão do projeto.
 
 | # | Escopo | Responsável | Carga | Atividade | Pré-requisitos | 
 | :---  | :---: | :---: | :---: | :--- | :--- |
@@ -162,18 +162,18 @@ Estimativa inicial de 108h para a primeira versão do projeto.
 | 2. | <b>Github</b> | - | - | - | |
 | 2.1. | Github | ? | ? | Criação de repositório para o Prometheus | |
 | 2.2. | Github | ? | ? | Criação de repositório para o serviço de monitoramento | |
-| 2.3. | Github | ? | 2 ~ 10h | Criação de workflow de build automática | |
+| 2.3. | Github | ? | 2 ~ 16h | Criação de workflow de build automática | |
 | 3. | <b>Prometheus</b> | - | - | - | <b>1, 2</b> |
 | 3.1. | Prometheus | Filipe | 4h | Configurar um repositório para build do container Prometheus | |
 | 3.2. | Prometheus | Filipe | 4h | Configurar IaC do container Prometheus como AWS ECS Fargate | |
 | 3.3. | Prometheus | Filipe | 4h | Configurar scrapper do Prometheus | 4.2 |
 | 4. | <b>Monitor</b> | - | - | - | <b>1, 2</b> |
-| 4.1. | Monitor | Filipe | 6h | Configuração do Projeto: ambiente local com docker-compose, Nestjs, conexão com Postgres e Prometheus | |
-| 4.2. | Monitor | Filipe | 6h | Configuração do gerador de documentação OpenAPI 3.1, [documentação](https://docs.nestjs.com/openapi/introduction) | |
+| 4.1. | Monitor | Filipe | 4h | Configuração do Projeto: ambiente local com docker-compose, Nestjs, conexão com Postgres e Prometheus | |
+| 4.2. | Monitor | Filipe | 4h | Configuração do gerador de documentação OpenAPI 3.1, [documentação](https://docs.nestjs.com/openapi/introduction) | |
 | 4.3. | Monitor | Filipe | 8h | RF1 - O serviço deve ser capaz de acumular métricas | |
 | 4.4. | Monitor | Filipe | 8h | RF2 - O serviço deve acumular métricas de forma a agrupar e filtrar por critérios | |
 | 4.5. | Monitor | Filipe | 8h | RF3 - Coleta de métricas de sistemas integrados | |
 | 4.6. | Monitor | Filipe | 8h | RF4 - Coleta de métricas sobre conexões entre sistemas | |
 | 4.7. | Monitor | Filipe | 2h | RF5 - Exportação de métricas | |
-| 4.8. | Monitor | Filipe | 20h | RF6 - Sistema deve interpretar métricas sobre Providers  | |
-| 4.9. | Monitor | Filipe | 20h | RF7 - Sistema deve acumular métricas sobre Conexões | |
+| 4.8. | Monitor | Filipe | 24h | RF6 - Sistema deve interpretar métricas sobre Providers  | |
+| 4.9. | Monitor | Filipe | 24h | RF7 - Sistema deve acumular métricas sobre Conexões | |
