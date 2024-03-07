@@ -1,9 +1,9 @@
 module.exports = {
-  "/providers": {
+  "/connections": {
     get: {
-      summary: 'List of providers',
-      description: 'Returns a list of Providers.',
-      tags: ['providers'],
+      summary: 'List of connections',
+      description: 'Returns a list of connections.',
+      tags: ['connections'],
 
       responses: {
         200: {
@@ -13,7 +13,7 @@ module.exports = {
               schema: {
                 type: "array",
                 items: {
-                  $ref: "#/components/schemas/Provider"
+                  $ref: "#/components/schemas/Connection"
                 }
               }
             }
@@ -23,18 +23,18 @@ module.exports = {
     }
   },
 
-  "/providers/{id}": {
+  "/connections/{id}": {
     get: {
-      summary: 'Show a provider',
-      description: 'Returns a Provider.',
-      tags: ['providers'],
+      summary: 'Show a connection',
+      description: 'Returns a connection.',
+      tags: ['connections'],
 
       parameters: [
         {
           name: 'id',
           required: true,
           in: 'path',
-          description: 'Provider ID.',
+          description: 'connection ID.',
           schema: { type: 'string' },
         },
       ],
@@ -47,7 +47,7 @@ module.exports = {
               schema: {
                 type: "array",
                 items: {
-                  $ref: "#/components/schemas/Provider"
+                  $ref: "#/components/schemas/Connection"
                 }
               }
             }
