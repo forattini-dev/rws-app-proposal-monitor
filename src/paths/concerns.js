@@ -1,5 +1,6 @@
 module.exports = {
-  PaginatedResource (ref) {
+
+  PaginatedResource ($ref) {
     return {
       type: "object",
       properties: {
@@ -15,10 +16,11 @@ module.exports = {
         items: {
           type: "array",
           items: {
-            $ref: ref,
+            $ref,
           }
         }
       }
     }
   }
+  
 }

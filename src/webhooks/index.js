@@ -1,4 +1,11 @@
-const { RequestsErrors } = require('../concerns')
+const { ResponseErrors, ResponseHeaders } = require('../concerns')
+
+const defaultResponses = {
+  200: {
+    description: "Metric push received successfully.",
+    headers: ResponseHeaders,
+  },
+}
 
 module.exports = {
   "/connections/{id}/metrics": {
@@ -13,7 +20,9 @@ module.exports = {
           required: true,
           in: 'path',
           description: 'Connection ID.',
-          schema: { type: 'string' },
+          schema: { 
+            $ref: "#/components/schemas/UUID"
+          },
         },
       ],
 
@@ -30,10 +39,8 @@ module.exports = {
       },
 
       responses: {
-        200: {
-          description: "Return a 200 status to indicate that the data was received successfully."
-        },
-        ...RequestsErrors,
+        ...defaultResponses,
+        ...ResponseErrors,
       }
     }
   },
@@ -50,7 +57,9 @@ module.exports = {
           required: true,
           in: 'path',
           description: 'Provider ID.',
-          schema: { type: 'string' },
+          schema: { 
+            $ref: "#/components/schemas/UUID"
+          },
         },
       ],
 
@@ -70,7 +79,7 @@ module.exports = {
         200: {
           description: "Return a 200 status to indicate that the data was received successfully."
         },
-        ...RequestsErrors,
+        ...ResponseErrors,
       }
     }
   },

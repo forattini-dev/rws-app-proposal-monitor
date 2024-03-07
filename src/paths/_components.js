@@ -5,11 +5,36 @@ module.exports = {
       type: "object",
       properties: {
         name: {
-          type: "string",
+          $ref: "#/components/schemas/MetricsNames",
         },
-        value: {
-          type: "integer",
-          format: "int32"
+      }
+    },
+
+    Timeseries: {
+      type: "object",
+      properties: {
+        metric: {
+          $ref: "#/components/schemas/MetricsNames",
+        },
+        interval: {
+          type: "object",
+          properties: {
+            startAt: {
+              type: 'string',
+              format: 'date',
+            },
+            endAt: {
+              type: 'string',
+              format: 'date',
+            },
+          }
+        },
+        values: {
+          type: "array",
+          minItems: 12,
+          items: {
+            type: "integer",
+          }
         },
       }
     },
@@ -18,16 +43,23 @@ module.exports = {
       type: "object",
       properties: {
         id: {
-          type: "integer",
+          $ref: "#/components/schemas/UUID",
         },
-        code: {
-          "type": "integer",
-          "format": "int32"
+      }
+    },
+
+    ProviderPopulated: {
+      type: "object",
+      properties: {
+        id: {
+          type: 'string',
+          format: 'uuid',
+          description: 'Unique identifier for the object'
         },
-        metris: {
+        metrics: {
           type: "array",
           items: {
-            "$ref": "#/components/schemas/Metric"
+            "$ref": "#/components/schemas/Timeseries"
           }
         }
       }
@@ -37,18 +69,22 @@ module.exports = {
       type: "object",
       properties: {
         id: {
-          type: "integer",
+          $ref: "#/components/schemas/UUID",
         },
         from: {
-          "$ref": "#/components/schemas/Provider"
+          type: 'string',
+          format: 'uuid',
+          description: 'Unique identifier for the object'
         },
         to: {
-          "$ref": "#/components/schemas/Provider"
+          type: 'string',
+          format: 'uuid',
+          description: 'Unique identifier for the object'
         },
-        metris: {
+        metric: {
           type: "array",
           items: {
-            "$ref": "#/components/schemas/Metric"
+            "$ref": "#/components/schemas/Timeseries"
           }
         }
       }

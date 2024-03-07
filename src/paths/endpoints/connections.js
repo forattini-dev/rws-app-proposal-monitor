@@ -1,6 +1,7 @@
 const { pick } = require('lodash')
-const { pickRequestsErrors } = require('../concerns')
-const { PaginatedResource } = require('./concerns')
+
+const { PaginatedResource } = require('../concerns')
+const { pickRequestsErrors, ResponseHeaders, IndexRequestParams } = require('../../concerns')
 
 const errors = pickRequestsErrors([404, 422, 429])
 errors[404].description = "Connection not found"
@@ -11,10 +12,13 @@ module.exports = {
       summary: 'List of connections',
       description: 'Returns a list of connections.',
       tags: ['connections'],
+      parameters: IndexRequestParams,
 
       responses: {
         200: {
+          headers: ResponseHeaders,
           description: "Return a 200 status to indicate that the data was received successfully.",
+
           content: {
             "application/json": {
               schema: PaginatedResource('#/components/schemas/Connection')
@@ -37,14 +41,18 @@ module.exports = {
           name: 'id',
           required: true,
           in: 'path',
-          description: 'connection ID.',
-          schema: { type: 'string' },
+          description: 'Connection ID.',
+          schema: { 
+            $ref: "#/components/schemas/UUID" 
+          },
         },
       ],
 
       responses: {
         200: {
+          headers: ResponseHeaders,
           description: "Return a 200 status to indicate that the data was received successfully.",
+
           content: {
             "application/json": {
               schema: {
