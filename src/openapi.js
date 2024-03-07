@@ -13,9 +13,17 @@ const openapi = {
 
   servers: [
     {
-      description: "Development server",
-      "url": "http://petstore.example.com/api",
-    }
+      description: "DEV",
+      url: "https://api.dev.rws.com.br",
+    },
+    {
+      description: "STG",
+      url: "https://api.stg.rws.com.br",
+    },
+    {
+      description: "PRD",
+      url: "https://api.rws.com.br",
+    },
   ],
 
   paths: {},

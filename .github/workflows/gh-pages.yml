@@ -44,7 +44,7 @@ jobs:
           BUILD_PREFIX: /rws-app-proposal-monitor
         run: |
           yarn
-          yarn run build-github
+          yarn run build
 
       - name: Setup Pages
         uses: actions/configure-pages@v4
