@@ -40,6 +40,7 @@ jobs:
 
       - name: Build
         env:
+          BUILD_SERVER: "true"
           BUILD_PREFIX: /rws-app-proposal-monitor
         run: |
           yarn
