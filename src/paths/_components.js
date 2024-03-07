@@ -12,12 +12,15 @@ module.exports = {
 
     Timeseries: {
       type: "object",
+      required: ["metric", "interval", "values"],
+
       properties: {
         metric: {
           $ref: "#/components/schemas/MetricsNames",
         },
         interval: {
           type: "object",
+          required: ["startAt"],
           properties: {
             startAt: {
               type: 'string',
@@ -81,7 +84,7 @@ module.exports = {
           format: 'uuid',
           description: 'Unique identifier for the object'
         },
-        metric: {
+        timeseries: {
           type: "array",
           items: {
             "$ref": "#/components/schemas/Timeseries"

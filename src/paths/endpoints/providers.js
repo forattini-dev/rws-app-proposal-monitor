@@ -1,5 +1,10 @@
+const { pick } = require('lodash')
+
 const { PaginatedResource } = require('../concerns')
 const { pickRequestsErrors, ResponseHeaders, IndexRequestParams } = require('../../concerns')
+
+const errors = pickRequestsErrors([404, 422, 429])
+errors[404].description = "Provider not found"
 
 module.exports = {
   "/providers": {
@@ -34,7 +39,8 @@ module.exports = {
               schema: PaginatedResource('#/components/schemas/ProviderPopulated')
             }
           },
-        }
+        },
+        ...pick(errors, 429),
       }
     }
   },
@@ -72,7 +78,8 @@ module.exports = {
               }
             }
           },
-        }
+        },
+        ...errors,
       }
     }
   },

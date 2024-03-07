@@ -32,7 +32,7 @@ module.exports = {
         content: {
           "application/json": {
             schema: {
-              "$ref": "#/components/schemas/MetricRequest"
+              "$ref": "#/components/schemas/PushMetricRequest"
             }
           }
         }
@@ -69,7 +69,7 @@ module.exports = {
         content: {
           "application/json": {
             schema: {
-              "$ref": "#/components/schemas/MetricRequest"
+              "$ref": "#/components/schemas/PushMetricRequest"
             }
           }
         }

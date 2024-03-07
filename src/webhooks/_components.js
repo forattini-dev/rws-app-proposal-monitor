@@ -8,7 +8,7 @@ module.exports = {
       description: 'Key-value pairs to be used as labels.',
     },
 
-    MetricRequest: {
+    PushMetricRequest: {
       type: "object",
       
       required: [
@@ -16,7 +16,7 @@ module.exports = {
       ],
       
       properties: {
-        name: {
+        metric: {
           $ref: "#/components/schemas/MetricsNames",
         },
         action: {
