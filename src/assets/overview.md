@@ -109,3 +109,35 @@ Estimativa inicial de 108h para a primeira versão do projeto.
 | 4.7. | Monitor | Filipe | 8h | Webhook de captura de métricas de conexões | |
 | 4.8. | Monitor | Filipe | 20h | Endpoints de listagem e métricas de Providers  | |
 | 4.9. | Monitor | Filipe | 20h | Endpoints de listagem e métricas de Conexões | |
+
+## Requisitos Funcionais
+
+### RF1 - Coleta de métricas de Providers
+- O sistema deve ser capaz de coletar métricas de sistemas integradores.
+- São elas:
+    - request_response_time
+    - request_success
+    - request_total
+    - request_error_500
+    - request_error_400
+
+### RF2 - Coleta de métricas de Connection 
+- O sistema deve ser capaz de coletar métricas de conexões entre sistemas.
+- São elas:
+    - resource_index_time
+    - resource_get_time
+    - resource_create_time
+    - resource_update_time
+    - resource_delete_time
+
+### RF3 - Exportação de métricas
+- O sistema deve exportar as métricas acumuladas para o Prometheus.
+- O endpoint default para o Prometheus é `/metrics`.
+
+### RF4 - Sistema deve acumular métricas sobre Providers
+- O sistema deve trazer para cada Provider:
+  - trazer cada métrica de Provider uma timeserie condicionada a um intervalo de tempo.
+
+### RF5 - Sistema deve acumular métricas sobre Conexões
+- O sistema deve trazer para cada Provider:
+  - trazer cada métrica de Provider uma timeserie condicionada a um intervalo de tempo.
