@@ -1,0 +1,6 @@
+{
+  "watch": ["src/"],
+  "ignore": ["docs/*"],
+  "ext": "js,json,md",
+  "exec": "node ./src/build.js"
+}
